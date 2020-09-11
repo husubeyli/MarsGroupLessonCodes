@@ -4,4 +4,7 @@
     background-color: lightskyblue;
     max-width: 500px;
     padding: 20px 30px;
+    border: 3px dotted blue;
+    margin: 20px 30px;
 }
+
