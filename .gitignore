@@ -5,4 +5,5 @@ env/
 .DS_Store
 .idea/
 .DS_Store/
-
+*/.vscode/
+.vscode/
