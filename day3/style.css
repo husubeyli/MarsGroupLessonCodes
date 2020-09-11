@@ -1,0 +1,7 @@
+#first-block{
+    width: 250px;
+    height: 100px;
+    background-color: lightskyblue;
+    max-width: 500px;
+    padding: 20px 30px;
+}
