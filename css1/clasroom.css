@@ -1,0 +1,13 @@
+ul li.active{
+    color: rgb(253, 4, 103);
+    font-family: 'Dancing Script', cursive;
+    font-weight: 100;
+    font-size: 100px;
+    text-decoration: underline;
+    font-style: normal;
+    text-align: right;
+}
+
+p{
+    text-align: justify;
+}
