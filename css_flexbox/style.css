@@ -1,0 +1,130 @@
+body{
+    font-family: poppins,sans-serif;
+    line-height: 1.9em;
+}
+
+.nav-link>a{
+    text-decoration: none;
+}
+.logo>a{
+    text-decoration: none;
+    font-size: 36px;
+    color: #5f8aa6;
+    font-weight: 300;
+}
+
+.logo, .menu-side{
+    flex-grow: 1;
+}
+
+nav{
+    flex-grow: 3;
+}
+
+
+header{
+    /* border: 3px solid black; */
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    height: 15vh;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links{
+    /* border: 3px solid red; */
+    display: flex;
+    justify-content: space-evenly;
+    /* padding: ; */
+}
+
+.nav-links>li>a{
+    color: #5f8aa6;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.logo{
+    /* border: 3px solid green; */
+}
+
+.menu-side{
+    /* border: 3px solid blue; */
+    color: #5f8aa6;
+    line-height: 36px;
+    display: flex;
+    justify-content: flex-end;
+}
+/* .menu-side > *{
+    font-size: 36px;
+} */
+
+#presentation{
+    height: 120vh;
+    background: transparent url('https://quomodothemes.website/wp/appark/wp-content/uploads/2019/10/header-shape.png') center center/cover no-repeat scroll;
+}
+
+.intro{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    height: 105vh;
+    align-items: center;
+}
+.top-title{
+    color: #6871fd;
+    font-size: 26px;
+    font-weight: 400;
+}
+.title{
+    color: #00304f;
+    font-size: 68px;
+    font-weight: 600;
+    line-height: 78px;
+}
+
+.desc{
+    color: #5f8aa6;
+    font-size: 18px;
+}
+
+.get-started{
+    text-align: center;
+    width: 210px;
+    border: 0;
+    font-size: 16px;
+    color: #fff;
+    padding: 15px 40px;
+    border-radius: 100px;
+    transition: 0.5s;
+    background: linear-gradient(45deg,#e641cd 0%,#7028e4 100%);
+}
+.learn-more{
+    text-align: center;
+    width: 210px;
+    border: 0;
+    font-size: 16px;
+    color: #5f8aa6;
+    background: #f1faff;
+    padding: 15px 40px;
+    border-radius: 100px;
+}
+.image img{
+    max-width: 100%;
+    height: auto;
+    width: 100%;
+    line-height: 0;
+}
+
+.get-started:hover{
+    transform: translateY(-10px);
+    box-shadow: inset 0 0 0 60px rgba(0,0,0,.2), 0 5px 30px 0 rgba(112,40,228,.5);
+}
+
+.information{
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    justify-content: space-around;
+}
