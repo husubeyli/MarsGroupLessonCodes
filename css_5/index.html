@@ -15,6 +15,9 @@
             <img src="https://theme-land.com/prolend/demo/assets/img/logo/logo.png" alt="Logo">
         </div>
         <nav>
+            <div class="close">
+                <span>&times;</span>
+            </div>
             <ul class="nav-links">
                 <li class="nav-link">
                     <a href="#" class="triangle">Home</a>
@@ -23,7 +26,6 @@
                         <li> <a href="#">Homepage-2</a> </li>
                         <li> <a href="#">Homepage-3</a> </li>
                         <li> <a href="#">Homepage-4</a> </li>
-
                     </ul>
                 </li>
                 <li class="nav-link"><a href="#">Features</a></li>
@@ -33,8 +35,14 @@
                 <li class="nav-link"><a href="#">Contact</a></li>
             </ul>
         </nav>
+        <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
     </header>
-
+    <main>
+    </main>
     <section id="presentation">
         <div class="information">
             <h6 class="short-text">The Next Generation Landing Page</h6>
@@ -48,11 +56,23 @@
         <div class="image">
             <img src="https://theme-land.com/prolend/demo/assets/img/welcome/welcome-mockup.png" alt="">
         </div>
-
+        
         <div class="rectangle">
         </div>
-
+    
 
     </section>
+    
+
+    <script>
+        document.querySelector('.hamburger').addEventListener('click', function(){
+            document.querySelector('nav').classList.add('show-nav');
+            document.querySelector('main').classList.add('opacity');
+        });
+        document.querySelector('.close').addEventListener('click', function(){
+            document.querySelector('nav').classList.remove('show-nav');
+            document.querySelector('main').classList.remove('opacity');
+        });
+    </script>
 </body>
 </html>

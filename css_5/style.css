@@ -6,10 +6,26 @@ body{
     color: #565656;
     overflow-x: hidden;
 }
+main{
+    transition: 0.5s;
+    position: fixed;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 0;
+    background-color: #fff;
+    opacity: 0.9;
+}
+main.opacity{
+    width: 100%;
+}
+
 
 nav{
     flex: 3;
 }
+
 header{
     display: flex;
     width: 80%;
@@ -123,11 +139,21 @@ header{
     color: #F74B54;
     border: 2px solid #F74B54;
 }
-
 .learn-more{
     border: 2px solid #0167da;
     color: #0167da;
 }
+.close{
+    justify-content: flex-end;
+    display: none;
+    padding: .75rem 1.25rem;
+}
+.close span{
+    font-size: 30px;
+    font-weight: 400;
+    color: #565656;
+}
+
 
 .short-text{
     font-size: 16px;
@@ -135,6 +161,10 @@ header{
     font-weight: 300;
     font-style: italic;
     text-transform: capitalize!important;
+}
+
+.show-nav{
+    right: 0;
 }
 .image img{
     animation: 2s top-buttom infinite;
@@ -148,12 +178,15 @@ header{
 .nav-link .dropdown{
     display: none;
 }
+
 .rectangle{
     height: 190%;
     width: 100%;
     border-radius: 120px;
-    position: absolute;
+    position: fixed;
     z-index: -1;
+    bottom: 0;
+    right: 0;
     transform: translate(35%,-28%) rotate(-35deg);
     background: linear-gradient(-47deg, #F956CB 0%, #F74B54 100%);
 }
@@ -167,5 +200,74 @@ header{
     }
     100%{
         transform: translateY(0);
+    }
+}
+
+.hamburger{
+    display: none;
+}
+
+.hamburger .line{
+    width: 25px;
+    height: 3px;
+    background-color: white;
+}
+
+.hamburger .line:nth-child(2){
+    margin: 6px 0;
+}
+
+@media screen and (max-width: 992px){
+    .hamburger{
+        display: block;
+    }
+
+    nav{
+        /* display: none; */
+        background-color: #fff;
+        position: fixed;
+        right: -350px;
+        top: 0;
+        bottom: 0;
+        z-index: 100;
+        width: 20rem;
+        transition: .5s ease-in;
+    }
+    .close{
+        display: flex;
+    }
+    .nav-links{
+        flex-direction: column;
+
+    }
+    .nav-link{
+        padding: 0.75rem 1.25rem;
+    }
+    
+    .rectangle{
+        height: 130%;
+    }
+    #presentation{
+        height: 190vh;
+        flex-direction: column;
+    }
+
+}
+@media screen and (min-width: 992px){
+    #presentation{
+        height: 120vh;
+    }
+}
+
+@media screen and (min-width: 1255px){
+    #presentation{
+        height: 90vh;
+    }
+    
+}
+
+@media screen and (max-width: 600px){
+    #presentation{
+        height: 200vh;
     }
 }
