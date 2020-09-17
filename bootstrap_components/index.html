@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="bootstrap-4.5.2-dist/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Carousel</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+
+
+      <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://miro.medium.com/max/840/1*RJMxLdTHqVBSijKmOO5MAg.jpeg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block text-left">
+              <h1>First slide label</h5>
+              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              <button type="button" class="btn btn-primary btn-lg">Large button</button>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="https://miro.medium.com/max/840/1*RJMxLdTHqVBSijKmOO5MAg.jpeg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block text-left">
+              <h1>Second slide label</h5>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <button type="button" class="btn btn-primary btn-lg">Large button</button>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="https://miro.medium.com/max/840/1*RJMxLdTHqVBSijKmOO5MAg.jpeg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block text-left">
+              <h1>Third slide label</h5>
+              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+              <button type="button" class="btn btn-primary btn-lg">Large button</button>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+
+      <div class="container">
+            <div class="jumbotron bg-dark text-white">
+                <div class="w-50">
+                    <h1 class="display-4 font-italic jumbotron-big-text">Title of a longer featured blog post</h1>
+                    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                    <b>It uses utility ... </b>
+                </div>
+            </div>
+
+            <section class="d-flex">
+                <div class="card mb-3 mr-5" style="max-width: 540px;">
+                    <div class="row no-gutters">
+                      
+                      <div class="col-md-8">
+                        <div class="card-body">
+                            <b class="text-primary">World</b>
+                            <h3 class="card-title mb-0">Card title</h5>
+                                <span class="text-muted">Nov 12</span>
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                          <p class="card-text"><a href="#">Continue reading</a></p>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <img src="https://elevenfifty.org/wp-content/uploads/2016/11/Python-Icon.png" class="card-img" alt="...">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row no-gutters">
+                      
+                      <div class="col-md-8">
+                        <div class="card-body">
+                            <b class="text-success">Design</b>
+                            
+                          <h3 class="card-title mb-0 jumbotron-big-text">Post title</h5>
+                            <span class="text-muted">Nov 12</span>
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                          <p class="card-text"><a href="#">Continue reading</a></p>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <img src="https://elevenfifty.org/wp-content/uploads/2016/11/Python-Icon.png" class="card-img" alt="...">
+                      </div>
+                    </div>
+                  </div>
+            </section>
+
+            <section>
+                <div class="row">
+                    <div class="col-4">
+                        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero similique aut neque, architecto aspernatur in enim odit eius, dolore quo, iure assumenda itaque. Aperiam accusantium quo vitae, incidunt alias natus?</h1>
+                    </div>
+                    <div class="col-4">
+                        <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam, nam officia. Magni, provident. Adipisci suscipit deleniti quia quo, nesciunt ducimus architecto similique odio eaque nam! Itaque laboriosam repellendus iusto debitis!</h1>
+                    </div>
+                    <div class="col-4">
+                        <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam, nam officia. Magni, provident. Adipisci suscipit deleniti quia quo, nesciunt ducimus architecto similique odio eaque nam! Itaque laboriosam repellendus iusto debitis!</h1>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+</html>
