@@ -2,21 +2,27 @@ var firstValue = 0;
 var secondValue = 0;
 var operator = '';
 
+function writeToPage(){
+    if (secondValue !== 0)
+        document.querySelector('#screen').value = firstValue + operator + secondValue;
+    else
+        document.querySelector('#screen').value = firstValue + operator;
+}
+
 function sum(){
-    console.log(firstValue + secondValue);
+    firstValue = firstValue + secondValue;
 }
 function subtraction(){
-    console.log(firstValue - secondValue);
+    firstValue = firstValue - secondValue
 }
 
 function divide(){
-    console.log(firstValue / secondValue);
+    firstValue = firstValue / secondValue;
 }
 
 function multiplate(){
-    console.log(firstValue * secondValue);
+    firstValue = firstValue * secondValue;
 }
-
 
 function getValue(value){
     if (operator === ''){
@@ -24,6 +30,7 @@ function getValue(value){
     }else{
         secondValue = secondValue*10 + value;
     }
+    writeToPage();
 }
 
 function getOperator(newOperator){
@@ -42,4 +49,5 @@ function getOperator(newOperator){
         }
     }
     operator = newOperator;
+    writeToPage();
 }
