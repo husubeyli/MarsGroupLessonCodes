@@ -51,3 +51,12 @@ function getOperator(newOperator){
     operator = newOperator;
     writeToPage();
 }
+
+
+function restart(){
+    console.log('here');
+    firstValue = 0;
+    secondValue = 0;
+    operator = '';
+    writeToPage();
+}
