@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <title>Recording</title>
+ <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+ <section class="calculator">
+  <form>
+   <input type="text" name="" id="" class="screen">
+  </form>
+  <div class="buttons">
+   <!-- yellow -->
+   <button type="button" class="btn btn-yellow" onclick="getOperator('*');" >*</button>
+   <button type="button" class="btn btn-yellow" onclick="getOperator('/');">/</button>
+   <button type="button" class="btn btn-yellow" onclick="getOperator('-');">-</button>
+   <button type="button" class="btn btn-yellow" onclick="getOperator('+');">+</button>
+   <!-- grey buttons -->
+   <button type="button" class="btn btn-grey">.</button>
+   <button type="button" class="btn btn-grey" onclick="getValue(9);" >9</button>
+   <button type="button" class="btn btn-grey" onclick="getValue(8);" >8</button>
+   <button type="button" class="btn btn-grey" onclick="getValue(7);" >7</button>
+   <button type="button" class="btn btn-grey" onclick="getValue(6);" >6</button>
+   <button type="button" class="btn btn-grey" onclick="getValue(5);" >5</button>
+   <button type="button" class="btn btn-grey" onclick="getValue(4);" >4</button>
+   <button type="button" class="btn btn-grey" onclick="getValue(3);" >3</button>
+   <button type="button" class="btn btn-grey" onclick="getValue(2);" >2</button>
+   <button type="button" class="btn btn-grey" onclick="getValue(1);" >1</button>
+   <button type="button" class="btn btn-grey" onclick="getValue(0);">0</button>
+   <button type="button" class="btn-equal btn-grey" onclick="getOperator('=');">=</button>
+   <button type="button" class="btn-clear btn-grey">C</button>
+
+  </div>
+
+
+
+
+
+ </section>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
