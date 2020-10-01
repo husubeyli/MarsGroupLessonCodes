@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .person{
+            height: 100px;
+            width: 100px;
+            display: inline-block;
+            background-color: indigo;
+            color: white;
+            margin: 0 20px;
+            
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="grid">
+        <div class="person front">
+            Idris
+        </div>
+        <div class="person front back">
+            Eyyub
+        </div>
+        <div class="person back">
+            Nizami
+        </div>
+        <div class="person back">
+            Enver
+        </div>
+
+    </div>
+
+    <div class="button-group filter-button-group">
+        <button data-filter="*">Show all</button>
+        <button data-filter=".front">Show Front-end dev</button>
+        <button  data-filter=".back">Show back-end dev</button>
+    </div>
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
