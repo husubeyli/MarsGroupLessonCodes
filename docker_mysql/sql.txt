@@ -1,0 +1,21 @@
+create table users(
+  id int(11) unsigned AUTO_INCREMENT PRIMARY KEY,
+  first_name varchar(50) NOT NULL,
+  last_name varchar(50) NOT NULL,
+  email varchar(30) NOT NULL,
+  age tinyint(2) unsigned,
+  birth_day date,
+  gender enum('male','female'),
+  bio text NOT NULL
+);
+
+insert into users(first_name, last_name, email, age, birth_day, gender, bio)
+values ('eyyub', 'amiraslanov', 'eyyubamiraslan3625@gmail.com', 
+22, '1998-09-01', 'male', 'manis'), ('eyyub2', 'amiraslanov', 'eyyubamiraslan3625@gmail.com', 
+22, '1998-09-01', 'male', 'manis'), ('eyyub3', 'amiraslanov', 'eyyubamiraslan3625@gmail.com', 
+22, '1998-09-01', 'male', 'manis');
+ 
+
+ update users set first_name = 'Eyyub', age=23 where id=1;
+
+ delete from users where first_name='eyyub2' or first_name='eyyub3';
