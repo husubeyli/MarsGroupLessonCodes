@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Users</h1>
+    <ul>
+        {{ user_list }}
+        {% for user in user_list %}
+            <li>Email: {{ user.email }} </li>
+        {% endfor %}
+    </ul>
+
+    <form action="/create" method="post">
+        <div>
+            <label for="">Username</label>
+            <input type="text" name="username">
+        </div>
+        <div>
+            <label for="">Email</label>
+            <input type="text" name="email">
+        </div>
+        <div>
+            <label for="">Full name</label>
+            <input type="text" name="full_name">
+        </div>
+        <input type="submit" value="Yarat">
+    </form>
+</body>
+</html>
