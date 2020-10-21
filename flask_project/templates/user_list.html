@@ -6,6 +6,16 @@
     <title>Document</title>
 </head>
 <body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+
     <h1>Users</h1>
     <ul>
         {{ user_list }}
@@ -14,20 +24,7 @@
         {% endfor %}
     </ul>
 
-    <form action="/create" method="post">
-        <div>
-            <label for="">Username</label>
-            <input type="text" name="username">
-        </div>
-        <div>
-            <label for="">Email</label>
-            <input type="text" name="email">
-        </div>
-        <div>
-            <label for="">Full name</label>
-            <input type="text" name="full_name">
-        </div>
-        <input type="submit" value="Yarat">
-    </form>
+
+        
 </body>
 </html>
