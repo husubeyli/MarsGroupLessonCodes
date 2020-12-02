@@ -1,0 +1,33 @@
+insert into Employee (name, age, salary, number, nationality) values
+('Cara', 49, 1458, 9508, 'United States Virgin Islands'),
+('Wade', 66, 2585, 8509, 'Japan'),
+('Verda', 52, 3413, 7560, 'Mali'),
+('Cerra', 80, 3342, 6874, 'Korea'),
+('Aida', 26, 1715, 6586, 'Bahams'),
+('Greta', 39, 3094, 1853, 'Colombia');  
+
+#1#
+##2#
+select * from Employee where number = 3413
+#3#
+select * from Employee where salary > 2500
+#4#
+select * from Employee where name like 'A%'
+#5#
+select * from Employee where nationality in ('China', 'Japan', 'Russia', 'Korea')
+#6#
+select * from Employee where age between 30 and 50
+#7#
+select * from Employee where name = 'Wade' and nationality = 'Japan';
+#8#
+select * from Employee where age>30 and number = 7560 or 1853;
+#9#
+update Employee set salary = salary * 2 where name like '%a';
+#10#
+ delete  from Employee  where number = 4014;
+#11#
+DROP TABLE Employee ;
+
+
+
+

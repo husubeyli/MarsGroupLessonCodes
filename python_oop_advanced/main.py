@@ -1,5 +1,5 @@
 import pymysql.cursors
-
+from datetime import datetime
 
 class Model():
     connection = pymysql.connect(host='localhost',
@@ -9,7 +9,6 @@ class Model():
                              port=3306,
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)
-
 
     @classmethod
     def create(cls, **kwargs):

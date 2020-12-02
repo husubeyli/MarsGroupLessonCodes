@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    
+
+    <script>
+
+        (function() {
+            let validateForm =  document.querySelector('#validate-ip-form');
+            validateForm.addEventListener('submit', (evt => {
+                evt.preventDefault();
+                let validateIPURL = localStorage.getItem('VALIDATE_IP_URL');
+                let ipAddress = document.querySelector('[name="ip_address"]').value;
+                let csrfToken = document.querySelector('[name="csrfmiddlewaretoken"]').value;
+                let postData = {
+                    'ip_address': ipAddress,
+                }
+
+                fetch(validateIPURL, {
+                    headers:{
+                        'X-CSRFToken': csrfToken,
+                        'Content-Type': 'application/json',
+                    },
+                    method:'POST',
+                    body: JSON.stringify(postData),
+                }).then(response => {
+                    // console.log(response);
+                    //
+                    if (!response.ok) {
+                        throw new Error(response.json());
+                    }
+                    return response.json();
+                }).then(response => {
+                    console.log('Success:', response);
+                })
+                .catch((error) => {
+                console.error('Error:', error);
+                });
+            }));
+        })();
+
+
+
+
+
+    </script>
+</body>
+</html>

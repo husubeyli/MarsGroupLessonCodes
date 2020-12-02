@@ -1,0 +1,8 @@
+create table phone_numbers(
+   id int(11) unsigned AUTO_INCREMENT PRIMARY KEY,
+   number varchar(15) NOT NULL,
+   user_id int(11) NOT NULL
+   foreign key user_id REFERENCES users(id) ON DELETE CASCADE
+);
+
+INT − A normal-sized integer that can be signed or unsigned. If signed, the allowable range is from -2147483648 to 2147483647. If unsigned, the allowable range is from 0 to 4294967295. You can specify a width of up to 11 digits.

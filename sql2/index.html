@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="https://hpp.sandbox.addonpayments.com/pay" method="POST" target="iframe">
+        <input type="hidden" name="TIMESTAMP" value="20201013010537">
+        <input type="hidden" name="MERCHANT_ID" value="351955612">
+        <input type="hidden" name="ACCOUNT" value="internet">
+        <input type="hidden" name="ORDER_ID" value="2">
+        <input type="hidden" name="AMOUNT" value="100">
+        <input type="hidden" name="CURRENCY" value="EUR">
+        <input type="hidden" name="SHA1HASH" value="184d26a6638ec13f795164f4b1bde93531a81698">
+        <input type="hidden" name="AUTO_SETTLE_FLAG" value="1">
+        <input type="hidden" name="HPP_VERSION" value="2">
+        <!-- iFrame Optimization Fields -->
+        <input type="hidden" name="HPP_POST_DIMENSIONS" value="https://www.kebabapp.com/?error=true">
+        <input type="hidden" name="HPP_POST_RESPONSE" value="https://www.kebabapp.com/?success=true">
+        <!-- End iFrame Optimization Fields -->
+        <input type="hidden" name="MERCHANT_RESPONSE_URL" value="https://www.kebabapp.com/?success=true">
+        <input type="submit" value="Click here to Purchase">
+      </form>
+</body>
+</html>

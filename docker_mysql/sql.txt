@@ -1,9 +1,9 @@
 create table users(
-  id int(11) unsigned AUTO_INCREMENT PRIMARY KEY,
+  id int(11) unsigned unique AUTO_INCREMENT PRIMARY KEY , 
   first_name varchar(50) NOT NULL,
   last_name varchar(50) NOT NULL,
   email varchar(30) NOT NULL,
-  age tinyint(2) unsigned,
+  age tinyint(2) unsigned dafault 5,
   birth_day date,
   gender enum('male','female'),
   bio text NOT NULL

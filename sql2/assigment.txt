@@ -1,0 +1,80 @@
+#assigment1#
+CREATE TABLE salesmen (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name varchar(40) NOT NULL,
+    city varchar(40),
+    commission decimal(4,2 ) NOT NULL
+);
+
+
+CREATE TABLE customer (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name varchar(40) NOT NULL,
+    city varchar(40),
+    grade int(5),
+    salesman int(6) UNSIGNED NOT NULL,
+    FOREIGN KEY (salesman) REFERENCES salesmen(id)
+);
+
+insert into salesmen (name, city, commission) values
+('James Hoog','New York', 0.15),
+('Nail Knite', 'Paris', 0.13),
+('Pit Alex', 'London', 0.11),   
+('Lauson Hense', null, 0.12),
+('Paul Adam', 'Rome', 0.13);
+
+
+
+insert into customer (name, city, grade, salesman)
+values('Nick Rimando', 'New York', 100, 1),
+('Graham Zusi', 'California', 200, 2),
+('Fabian Johnson', 'Paris', 300, 4),
+('Brad Davis', 'New York', 200, 1),
+('Geoff Cameron', 'Berlin', 100, 5),
+('Julian Green', 'London', 300, 2),
+('Brad Guzan', 'London', null, 3);
+
+
+Select 
+ customer.name,
+ customer.city,
+ salesmen.name,
+ salesmen.commission
+From
+ customer 
+INNER JOIN 
+salesmen 
+ on salesmen.id = salesman
+ 
+
+;
+
+
+#assigment2#
+
+Select 
+ customer.name,
+ customer.city,
+ salesmen.name,
+ salesmen.commission
+From
+ customer 
+INNER JOIN 
+salesmen 
+ on salesmen.id = salesman
+ where salesmen.commission >0.12
+ ;
+
+ #assigment3# 2 ve 3 de ancaq shert hisse deyishir
+ Select 
+ salesmen.name,
+ customer.name,
+ salesmen.city
+From
+ salesmen
+INNER JOIN 
+customer
+ on salesmen.city=customer.city
+ ;
+
+

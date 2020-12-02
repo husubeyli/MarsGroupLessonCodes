@@ -1,4 +1,3 @@
-from os import path
 import click
 import os
 
@@ -10,7 +9,7 @@ def create_project(project, bootstrap):
     project_path = os.getcwd()
     if not os.path.isdir(project):
         os.mkdir(project)
-    os.system(f'cp -r project_internal/* {project_path}/{project}')
+    os.system(f'cp -R project_internal/* {project_path}/{project}')
     if not bootstrap:
         with open(f'{project_path}/{project}/index.html', 'r') as f:
             lines = f.readlines()
