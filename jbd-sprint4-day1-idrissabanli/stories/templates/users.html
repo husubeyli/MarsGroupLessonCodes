@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load custom_tags %}
+
+
+{% block content %}
+
+    Hello World
+    <a href="{% url 'home_page' %}">Goto Home Page</a>
+    <h1>All User</h1>
+
+    <ul>
+        {{user_list}}
+             
+        {% for user in user_list %}
+            <li><a href="{% url 'user_detail' forloop.counter  %}">{{ forloop.counter }}. {{ user.name }}</a>
+                <p>
+                    {% with description as user.desc|truncatechars:"100"|safe %}
+                        {{ user.desc|split_filter:" " }} Read More
+                        {{user.birth_day|date:"j F Y"}}
+                    {% endwith %}
+                </p>
+            </li>
+        {% empty %}
+        <h1> Gosterilecek melumat yoxdur!</h1>
+        {% endfor %}
+
+    </ul>
+
+{% endblock %}

@@ -1,0 +1,10 @@
+{% load custom_tags %}
+
+<nav>
+    <ul style="display: flex;">
+        {% get_navbar as elements %}
+        {% for element in elements %}
+            <li><a href="">{{ element }}</a></li>
+        {% endfor %}
+    </ul>
+</nav>
