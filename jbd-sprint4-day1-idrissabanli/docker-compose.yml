@@ -1,0 +1,19 @@
+version: '3.1'
+
+services: 
+    postgres:
+        image: postgres
+        volumes:
+            - ./pgdb/:/var/lib/postgresql/data
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_DB: 'stories_db_name'
+            POSTGRES_USER: 'stories_db_user'
+            POSTGRES_PASSWORD: 'f26b8ab553cfd4767216dbc7be7702fcad1b0115a6347e87e'
+
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 8080:8080
