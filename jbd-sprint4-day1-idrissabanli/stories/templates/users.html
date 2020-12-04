@@ -9,10 +9,9 @@
     <h1>All User</h1>
 
     <ul>
-        {{user_list}}
              
         {% for user in user_list %}
-            <li><a href="{% url 'user_detail' forloop.counter  %}">{{ forloop.counter }}. {{ user.name }}</a>
+            <li><a href="{% url 'user_detail' forloop.counter  %}">{{ forloop.counter }}. {{ user.first_name }} {{ user.last_name }}</a>
                 <p>
                     {% with description as user.desc|truncatechars:"100"|safe %}
                         {{ user.desc|split_filter:" " }} Read More

@@ -2,30 +2,11 @@ from django.shortcuts import render
 from django.http import Http404
 from datetime import datetime
 
-users = [
-    {
-        'id': 1,
-        'name': 'Kenan salam',
-        'desc': '''<h1>Lorem ipsum, dolor sit amet 
-        consectetur adipisicing elit. Numquam error 
-        aperiam sint laboriosam deserunt impedit quibusdam aut 
-        consequatur pariatur autem exercitationem, 
-        fuga iure, omnis quo in 
-        ipsam nihil perferendis ipsum.</h1>''',
-        'birth_day': datetime.now()
-    },
-    {
-        'id': 2,
-        'name': 'Turqut'
-    },
-    {
-        'id': 3,
-        'name': 'Murad'
-    }
-]
+from stories.models import Author
+
 
 def test(request):
-    
+    users = Author.objects.all()
     context = {
         'user_list': users
     }
