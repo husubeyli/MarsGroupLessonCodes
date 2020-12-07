@@ -8,21 +8,37 @@
     <a href="{% url 'home_page' %}">Goto Home Page</a>
     <h1>All User</h1>
 
+    <form action="">
+        <input type="text" name="search" value="{{searched_name}}">
+        <button type="submit">Axtar</button>
+    </form>
+
+    <a href="?order=id">Sira nomresine gore duzune nizamla</a>
+    <a href="?order=-id">Sira nomresine gore tersine nizamla</a>
+    <a href="?order=first_name">Adina gore duzune nizamla</a>
+    <a href="?order=-first_name">Adina gore tersine nizamla</a>
     <ul>
              
         {% for user in user_list %}
-            <li><a href="{% url 'user_detail' forloop.counter  %}">{{ forloop.counter }}. {{ user.first_name }} {{ user.last_name }}</a>
-                <p>
-                    {% with description as user.desc|truncatechars:"100"|safe %}
-                        {{ user.desc|split_filter:" " }} Read More
-                        {{user.birth_day|date:"j F Y"}}
-                    {% endwith %}
-                </p>
+            <li>
+                <a href="{% url 'user_detail' forloop.counter  %}">{{ user.id }}. {{ user.first_name }} {{ user.last_name }}</a>
             </li>
         {% empty %}
         <h1> Gosterilecek melumat yoxdur!</h1>
         {% endfor %}
 
+        <br>
+        <ul style="display: flex; width: 100px; justify-content: space-around; list-style: none;">
+            
+            {% for page in page_range %}
+                {% if page is current_page %}
+                    <li><a>{{page}}</a></li>
+                {% else %}
+                    <li><a href="?page={{page}}">{{page}}</a></li>
+                {% endif %}
+            {% endfor %}
+
+        </ul>
     </ul>
 
 {% endblock %}
