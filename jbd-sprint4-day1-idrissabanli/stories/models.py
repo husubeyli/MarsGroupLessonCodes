@@ -1,5 +1,7 @@
 from django.db import models
 
+from stories.tools.validators import validate_email
+
 
 class Author(models.Model):
     CATEGORY_CHOICES = (
@@ -120,4 +122,20 @@ class RecipeComment(models.Model):
         return self.title
 
 
+class Contact(models.Model):
+    name = models.CharField('Name', max_length=50)
+    email = models.EmailField('Email', max_length=40, validators=[validate_email, ])
+    subject = models.CharField('Subject', max_length=255)
+    message = models.TextField('Message')
 
+    # moderations
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Contact'
+        verbose_name_plural = 'Contacts'
+        ordering = ('-created_at',)
+
+    def __str__(self):
+        return self.name

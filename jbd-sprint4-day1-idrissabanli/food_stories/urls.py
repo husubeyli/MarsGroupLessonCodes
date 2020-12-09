@@ -19,6 +19,7 @@ from stories.views import (
     test,
     home,
     user_detail,
+    contact,
 ) 
 
 urlpatterns = [
@@ -26,4 +27,5 @@ urlpatterns = [
     path('test/', test, name='test_page'),
     path('', home, name='home_page'),
     path('user-detail/<int:user_id>/', user_detail, name='user_detail'),
+    path('contact/', contact, name='contact')
 ]

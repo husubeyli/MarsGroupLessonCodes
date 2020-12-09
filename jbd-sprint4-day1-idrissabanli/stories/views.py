@@ -1,10 +1,13 @@
 import math
-from django.shortcuts import render
-from django.http import Http404
+from django.shortcuts import render, redirect
+from django.http import Http404, request
 from datetime import datetime
 from django.db.models import Q
 
-from stories.models import Author
+from stories.models import Author, Contact
+from stories.forms import (
+    ContactForm
+)
 
 
 def test(request):
@@ -46,3 +49,22 @@ def user_detail(request, user_id):
 
 def home(request):
     return render(request, 'index.html')
+
+
+def contact(request):
+    form  = ContactForm()
+    if request.method == 'POST':
+        form = ContactForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+            #name = form.cleaned_data['name']
+            #email = form.cleaned_data['email']
+            #subject = form.cleaned_data['subject']
+            #message = form.cleaned_data['message']
+            #contact = Contact(name=name, email=email, subject=subject, message=message)
+            #contact.save()
+    context = {
+        'form': form
+    }
+    return render(request, 'contact.html', context)
