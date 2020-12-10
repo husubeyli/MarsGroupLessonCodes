@@ -119,7 +119,7 @@ class RecipeComment(models.Model):
         ordering = ('-created_at',)
 
     def __str__(self):
-        return self.title
+        return self.user.first_name
 
 
 class Contact(models.Model):
