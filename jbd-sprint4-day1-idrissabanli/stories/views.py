@@ -1,12 +1,20 @@
 import math
+from django.db import models
 from django.shortcuts import render, redirect
 from django.http import Http404, request
 from datetime import datetime
 from django.db.models import Q
+from django.urls.base import reverse_lazy
+from django.views.generic import (
+    ListView,
+    DetailView, 
+    CreateView
+)
 
-from stories.models import Author, Contact
+from stories.models import Author, Category, Contact, Recipe
 from stories.forms import (
-    ContactForm
+    ContactForm,
+    RecipeForm
 )
 
 
@@ -51,20 +59,69 @@ def home(request):
     return render(request, 'index.html')
 
 
-def contact(request):
-    form  = ContactForm()
-    if request.method == 'POST':
-        form = ContactForm(data=request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-            #name = form.cleaned_data['name']
-            #email = form.cleaned_data['email']
-            #subject = form.cleaned_data['subject']
-            #message = form.cleaned_data['message']
-            #contact = Contact(name=name, email=email, subject=subject, message=message)
-            #contact.save()
-    context = {
-        'form': form
-    }
-    return render(request, 'contact.html', context)
+# def recipe_list(request):
+#     recipes = Recipe.objects.all()
+#     context = {
+#         'recipe_list': recipes
+#     }
+#     return render(request, 'recipes.html', context)
+
+
+class RecipeListView(ListView):
+    model = Recipe
+    template_name = 'recipes.html'
+    paginate_by = 2
+
+    def get_queryset(self):
+        queryset =  super().get_queryset()
+        return queryset.filter(is_published=True)
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['categories'] = Category.objects.all()
+        return context
+
+
+class RecipeDetailView(DetailView):
+    model = Recipe
+    template_name = 'single.html'
+    context_object_name = 'article'
+
+    def get_queryset(self):
+        queryset =  super().get_queryset()
+        return queryset.filter(is_published=True)
+
+
+class ContactCreateView(CreateView):
+    form_class = ContactForm
+    template_name = 'contact.html'
+    success_url = reverse_lazy('stories:home_page')
+
+
+class CreateRecipeView(CreateView):
+    form_class = RecipeForm
+    template_name = 'create_recipe.html'
+    # success_url = ''
+
+    # def get_success_url(self):
+    #     recipe = self.object
+    #     return reverse_lazy('stories:recipe_detail', kwargs={ 'slug': recipe.slug }) + '?success_url=isledi'
+
+
+# def contact(request):
+#     form  = ContactForm()
+#     if request.method == 'POST':
+#         form = ContactForm(data=request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('/')
+#             #name = form.cleaned_data['name']
+#             #email = form.cleaned_data['email']
+#             #subject = form.cleaned_data['subject']
+#             #message = form.cleaned_data['message']
+#             #contact = Contact(name=name, email=email, subject=subject, message=message)
+#             #contact.save()
+#     context = {
+#         'form': form
+#     }
+#     return render(request, 'contact.html', context)

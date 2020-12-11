@@ -3,8 +3,58 @@ from django.db import models
 from django.db.models import fields
 from django.forms import widgets
 
-from stories.models import Contact
+from stories.models import Contact, Recipe
 
+
+class RecipeForm(forms.ModelForm):
+    class Meta:
+        model = Recipe
+        fields = (
+            'title',
+            'short_description',
+            'description',
+            'slug',
+            'image',
+            'owner',
+            'category',
+            'tags'
+        )
+
+        widgets = {
+            'title': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Title'
+            }),
+            'short_description': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Short description'
+            }),
+            'description': forms.Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': 'Description'
+            }),
+            'slug': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Slug'
+            }),
+            'image': forms.FileInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Image'
+            }),
+            'owner': forms.Select(attrs={
+                'class': 'form-control',
+                'placeholder': 'select owner'
+            }),
+            'category': forms.Select(attrs={
+                'class': 'form-control',
+                'placeholder': 'select owner'
+            }),
+            'tags': forms.SelectMultiple(attrs={
+                'class': 'form-control',
+                'placeholder': 'select owner'
+            }),
+
+        }
 
 
 class ContactForm(forms.ModelForm):
