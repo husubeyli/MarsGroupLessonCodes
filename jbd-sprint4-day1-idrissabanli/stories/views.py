@@ -1,5 +1,6 @@
 import math
 from django.db import models
+from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect
 from django.http import Http404, request
 from datetime import datetime
@@ -8,7 +9,10 @@ from django.urls.base import reverse_lazy
 from django.views.generic import (
     ListView,
     DetailView, 
-    CreateView
+    CreateView,
+    UpdateView, 
+    DeleteView,
+    TemplateView
 )
 
 from stories.models import Author, Category, Contact, Recipe
@@ -17,6 +21,7 @@ from stories.forms import (
     RecipeForm
 )
 
+User = get_user_model()
 
 def test(request):
     users = Author.objects.all()
@@ -96,6 +101,33 @@ class ContactCreateView(CreateView):
     form_class = ContactForm
     template_name = 'contact.html'
     success_url = reverse_lazy('stories:home_page')
+
+
+class RecipeDeleteView(DeleteView):
+    model = Recipe
+    http_method_names = ('post',)
+    success_url = reverse_lazy('stories:home_page')
+
+
+class AboutView(TemplateView):
+    template_name = 'about.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user_count'] = User.objects.count()
+        context['recipe_count'] = Recipe.objects.count()
+        return context
+    
+
+class UpdateRecipeView(UpdateView):
+    model = Recipe
+    form_class = RecipeForm
+    template_name = 'create_recipe.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['in_update_view'] = True
+        return context
 
 
 class CreateRecipeView(CreateView):

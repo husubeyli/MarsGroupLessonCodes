@@ -38,9 +38,13 @@
                         <div class="form-group">
                             <input type="file">
                         </div> -->
-                        <div class="form-group">
-                            <input type="submit" value="Create" class="btn btn-primary py-3 px-5">
+                        <div class="form-group d-flex justify-content-between">
+                            <input type="submit" value="Save" class="btn btn-primary py-3 px-5">
+                            {% if in_update_view %}
+                                <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-danger py-3 px-5">Delete</button>
+                            {% endif %}
                         </div> 
+                        
                     </form>
 
                 </div>
@@ -48,4 +52,41 @@
         </div>
     </section>
     
+    {% if in_update_view %}
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Xeberdarliq</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Bu melumati silmek istediyinizden emisinizmi?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <form action="{% url 'stories:delete_recipe' object.id %}" method="POST">
+              {% csrf_token %}
+            <button id="delete-recipe" type="submit" class="btn btn-primary">Beli</button>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+{% endblock %}
+
+{% block js %}
+
+  <!-- <script>
+      var deleteBtn = document.querySelector('#delete-recipe');
+      deleteBtn.addEventListener('click', ()=>{
+        window.location = "";
+      });
+  </script> -->
+
 {% endblock %}

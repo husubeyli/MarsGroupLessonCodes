@@ -14,10 +14,10 @@ class Author(models.Model):
     username = models.CharField(("Username: "), max_length=50)
     email = models.EmailField("Email: ", max_length=254)
     password = models.CharField(max_length=50)
-    gender = models.PositiveIntegerField(("Gender: "), choices=CATEGORY_CHOICES)
-    address = models.CharField("Address: ", max_length=1024)
-    biography = models.TextField(("Biograpyhy"))
-    image = models.ImageField("Image: ", upload_to='media/users_images')
+    gender = models.PositiveIntegerField(("Gender: "), choices=CATEGORY_CHOICES) # -
+    address = models.CharField("Address: ", max_length=1024) # -
+    biography = models.TextField(("Biograpyhy")) # -
+    image = models.ImageField("Image: ", upload_to='media/users_images') # -
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
