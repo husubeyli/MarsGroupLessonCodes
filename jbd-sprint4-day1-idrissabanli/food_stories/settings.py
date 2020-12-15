@@ -45,6 +45,7 @@ APPS.insert(0, 'jet')
 
 CUSTOME_APPS = [
     'stories',
+    'accounts'
 ]
 
 
@@ -55,6 +56,8 @@ THIRD_PARTY_APPS = [
 
 
 INSTALLED_APPS = APPS + CUSTOME_APPS + THIRD_PARTY_APPS
+
+AUTH_USER_MODEL = 'accounts.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

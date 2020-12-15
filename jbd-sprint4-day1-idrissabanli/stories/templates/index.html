@@ -4,4 +4,12 @@
     
     <a href="{% url 'stories:test_page' %}">Goto Test Page</a>
 
+    <h1>Your Basket</h1>
+    <ul>
+        {% for recipe in recipes %}
+            <li>{{recipe.title}}</li>
+        {% empty %}
+            <h1>Your basket is empty</h1>
+        {% endfor %}
+    </ul>
 {% endblock %}

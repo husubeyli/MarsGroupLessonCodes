@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <form action="{% url 'stories:add_cookie' %}" method="post">
+        {% csrf_token %}
+        <input type="text" value="" name="add_cookie_id">
+        <button type="submit">Yaz</button>
+    </form>
+
+
+
+</body>
+</html>

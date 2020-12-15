@@ -12,7 +12,8 @@ from stories.views import (
     CreateRecipeView,
     UpdateRecipeView, 
     RecipeDeleteView,
-    AboutView
+    AboutView,
+    AddCookieView,
 ) 
 
 app_name = 'stories'
@@ -28,5 +29,6 @@ urlpatterns = [
     path('recipe-detail/<slug:slug>/', RecipeDetailView.as_view(), name='recipe_detail'),
     path('update-recipe/<int:pk>/', UpdateRecipeView.as_view(), name='recipe_update'),
     path('create-recipe/', CreateRecipeView.as_view(), name='create_recipe'),
-    path('delete-recipe/<int:pk>/', RecipeDeleteView.as_view(), name='delete_recipe')
+    path('delete-recipe/<int:pk>/', RecipeDeleteView.as_view(), name='delete_recipe'),
+    path('add-cookie/', AddCookieView.as_view(), name='add_cookie')
 ]

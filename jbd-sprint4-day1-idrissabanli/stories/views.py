@@ -1,9 +1,11 @@
 import math
 from django.db import models
+from django.http import HttpResponse
+from django.template.loader import render_to_string
 from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect
-from django.http import Http404, request
-from datetime import datetime
+from django.http import Http404, request, response
+from datetime import datetime, timedelta
 from django.db.models import Q
 from django.urls.base import reverse_lazy
 from django.views.generic import (
@@ -12,8 +14,10 @@ from django.views.generic import (
     CreateView,
     UpdateView, 
     DeleteView,
-    TemplateView
+    TemplateView, 
+    View
 )
+from django.views.generic.edit import FormView
 
 from stories.models import Author, Category, Contact, Recipe
 from stories.forms import (
@@ -61,7 +65,19 @@ def user_detail(request, user_id):
 
 
 def home(request):
-    return render(request, 'index.html')
+    print(dict(request.session))
+    recipe_ids = request.session.get('add_cookie_id', [])
+    print(recipe_ids)
+    # working with cookie
+    # recipe_ids = request.COOKIES.get('add_cookie_id', [])
+    if recipe_ids:
+        recipe_ids= recipe_ids.split(',')
+        recipe_ids = list(map(int, recipe_ids))
+    recipes = Recipe.objects.filter(id__in=recipe_ids)
+    context = {
+        'recipes': recipes
+    }
+    return render(request, 'index.html', context)
 
 
 # def recipe_list(request):
@@ -85,6 +101,9 @@ class RecipeListView(ListView):
         context = super().get_context_data(*args, **kwargs)
         context['categories'] = Category.objects.all()
         return context
+
+# session_key | data
+# 1           | {'adi': 'idris', 'basket_products': [1,2,3]}
 
 
 class RecipeDetailView(DetailView):
@@ -117,6 +136,29 @@ class AboutView(TemplateView):
         context['user_count'] = User.objects.count()
         context['recipe_count'] = Recipe.objects.count()
         return context
+
+class AddCookieView(TemplateView):
+    template_name = 'django_cookie_example.html'
+
+
+    def post(self, request, *args, **kwargs):
+    
+        print(request.POST)
+        add_cookie_id_list = request.POST.get('add_cookie_id')
+        request.session['add_cookie_id'] = add_cookie_id_list
+        return render(request, 'django_cookie_example.html')
+
+## Working with cookie
+#     def post(self, request, *args, **kwargs):
+#         html = render_to_string('django_cookie_example.html')
+#         response = HttpResponse(html)
+#         print(request.POST)
+#         add_cookie_id_list = request.POST.get('add_cookie_id')
+#         cookie = str(add_cookie_id_list)
+#         print(cookie)
+#         response.set_cookie('add_cookie_id', cookie, expires=datetime.now() + timedelta(days=3))
+#         return response
+
     
 
 class UpdateRecipeView(UpdateView):
