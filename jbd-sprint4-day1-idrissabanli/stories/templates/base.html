@@ -53,7 +53,11 @@
                     <li class="nav-item"><a href="strories.html" class="nav-link">Stories</a></li>
                     <li class="nav-item"><a href="{% url 'stories:recipe_list' %}" class="nav-link">Recipes</a></li>
                     <li class="nav-item active"><a href="{% url 'stories:contact' %}" class="nav-link">Contact</a></li>
-                    <li><a href="" class="btn btn-black px-3 px-md-4 py-3">Sign in</a></li>
+                    {% if request.user.is_authenticated %}
+                        <li><a href="{% url 'accounts:logout' %}" class="btn btn-black px-3 px-md-4 py-3">Sign out</a></li>
+                    {% else %}
+                        <li><a href="{% url 'accounts:login' %}" class="btn btn-black px-3 px-md-4 py-3">Sign in</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
