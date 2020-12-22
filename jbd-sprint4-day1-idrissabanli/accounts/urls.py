@@ -22,7 +22,7 @@ urlpatterns = [
     re_path(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
             UserActivate.as_view(), name='activate'),
     path('logout/', LogoutView.as_view(), name='logout'),
-    path('profile/', UserProfileView.as_view(), name='profile'),
+    path('profile/<slug:username>/', UserProfileView.as_view(), name='profile'),
     path('password-change/', CustomPasswordChangeView.as_view(), name='password_change'),
     path('password-change-done/', PasswordChangeDone.as_view(), name='password_change_done'),
     path('password-reset-done/', PasswordResetDone.as_view(), name='password_reset_done'),

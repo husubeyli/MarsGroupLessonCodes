@@ -12,13 +12,14 @@
                             <h2 class="heading mb-4">About Me</h2>
                             <img src="images/author.jpg" class="img-fluid" alt="Colorlib Template">
                             <div class="text pt-4">
-                                <p>Hi! My name is <strong>{{ request.user.get_full_name }}</strong>
-                                    {% if request.user.bio %}
-                                        {{ request.user.bio }}
+                                <p>Hi! My name is <strong>{{ object.get_full_name }}</strong>
+                                    {% if object.bio %}
+                                        {{ object.bio }}
                                     {% endif %}
                                 </p>
                             </div>
                         </div>
+                        {% if request.user.is_authenticated and request.user == object %}
                         <div class="sidebar-box ftco-animate user-profile">
 
                             <a href="single.html" class="btn btn-hover-color py-2">Edit Profile</a>
@@ -30,6 +31,7 @@
                         <div class="sidebar-box ftco-animate user-profile">
                             <a href="single.html" class="btn btn-hover-color py-2">Create recipe </a>
                         </div>
+                        {% endif %}
                         <div class="sidebar-box p-4 ftco-animate">
                             <form action="#" class="search-form">
                                 <div class="form-group">

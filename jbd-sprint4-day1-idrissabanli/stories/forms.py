@@ -14,7 +14,6 @@ class RecipeForm(forms.ModelForm):
             'short_description',
             'description',
             'image',
-            'owner',
             'category',
             'tags'
         )
@@ -35,10 +34,6 @@ class RecipeForm(forms.ModelForm):
             'image': forms.FileInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Image'
-            }),
-            'owner': forms.Select(attrs={
-                'class': 'form-control',
-                'placeholder': 'select owner'
             }),
             'category': forms.Select(attrs={
                 'class': 'form-control',

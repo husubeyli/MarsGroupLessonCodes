@@ -8,6 +8,7 @@ from django.http import Http404, request, response
 from datetime import datetime, timedelta
 from django.db.models import Q
 from django.urls.base import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
     ListView,
     DetailView, 
@@ -161,7 +162,7 @@ class AddCookieView(TemplateView):
 
     
 
-class UpdateRecipeView(UpdateView):
+class UpdateRecipeView(LoginRequiredMixin, UpdateView):
     model = Recipe
     form_class = RecipeForm
     template_name = 'create_recipe.html'
@@ -172,10 +173,16 @@ class UpdateRecipeView(UpdateView):
         return context
 
 
-class CreateRecipeView(CreateView):
+class CreateRecipeView(LoginRequiredMixin, CreateView):
     form_class = RecipeForm
     template_name = 'create_recipe.html'
     # success_url = ''
+
+    def form_valid(self, form):
+        recipe = form.save(commit=False)
+        recipe.owner = self.request.user
+        recipe.save()
+        return super(CreateRecipeView, self).form_valid(form)
 
     # def get_success_url(self):
     #     recipe = self.object

@@ -119,17 +119,31 @@ class PasswordResetCompletedView(PasswordResetCompleteView):
     template_name = 'password_reset_completed.html'
 
 
-class UserProfileView(LoginRequiredMixin, TemplateView):
+class UserProfileView(DetailView):
     template_name = 'user-profile.html'
-    # model = User
+    slug_url_kwarg = 'username'
+    slug_field = 'username'
+    model = User
 
     def get_context_data(self, **kwargs):
-        user = self.request.user
+        user = self.get_object()
         context = super(UserProfileView, self).get_context_data(**kwargs)
         recipes = Recipe.objects.filter(owner=user)
         context['recipes'] = recipes
         return context
-        # stories = Story.objects.filter()
+
+
+# class UserProfileView(LoginRequiredMixin, TemplateView):
+#     template_name = 'user-profile.html'
+#     # model = User
+#
+#     def get_context_data(self, **kwargs):
+#         user = self.request.user
+#         context = super(UserProfileView, self).get_context_data(**kwargs)
+#         recipes = Recipe.objects.filter(owner=user)
+#         context['recipes'] = recipes
+#         return context
+#         # stories = Story.objects.filter()
         
 
 
