@@ -45,13 +45,13 @@ APPS.insert(0, 'jet')
 
 
 CUSTOME_APPS = [
-    'stories',
+    'stories.apps.StoriesConfig',
     'accounts'
 ]
 
 
 THIRD_PARTY_APPS = [
-    
+    'social_django',
 
 ]
 
@@ -104,7 +104,37 @@ DATABASES = {
         'HOST': '127.0.0.1',
     }
 }
+# SOCIAL AUTH CONFIGURATION
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '360419868722-75lcb4v3gj3jddoquqb6b5210oggqgui.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'UQT3HhLxGQP32BMI48LepRqo'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '388593865774009'        # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '62f7878c9244ea44ccf6a47693f45237'
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'user_friends']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+    'fields': 'id,name,email,picture',
+}
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.social_auth.associate_by_email',
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+    'accounts.tools.social_auth.update_user_social_data', # custom pipeline
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -184,6 +214,7 @@ STATIC_URL = '/static/'
 PASSWORD_RESET_TIMEOUT_DAYS = 0
 LOGIN_REDIRECT_URL = reverse_lazy('stories:home_page')
 LOGOUT_REDIRECT_URL = reverse_lazy('accounts:login')
+LOGIN_URL = reverse_lazy('accounts:login')
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"

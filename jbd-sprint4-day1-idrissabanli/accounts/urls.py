@@ -7,7 +7,9 @@ from accounts.views import (
     CustomPasswordChangeView,
     PasswordChangeDone,
     CustomPasswordResetView,
-    PasswordResetDone, PasswordResetCompletedView, CustomPasswordResetConfirmView
+    PasswordResetDone,
+    PasswordResetCompletedView,
+    CustomPasswordResetConfirmView
 )
 
 app_name = 'accounts'
@@ -17,7 +19,7 @@ urlpatterns = [
     path('login/', CustomLoginView.as_view(), name='login'),
     path('forget-password/', CustomPasswordResetView.as_view(), name='forget_password'),
     re_path(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
-        UserActivate.as_view(), name='activate'),
+            UserActivate.as_view(), name='activate'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('password-change/', CustomPasswordChangeView.as_view(), name='password_change'),
     path('password-change-done/', PasswordChangeDone.as_view(), name='password_change_done'),

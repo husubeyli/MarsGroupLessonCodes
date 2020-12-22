@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('stories.urls', namespace='stories')),
     path('accounts/', include('accounts.urls', namespace='accounts')),
+    path('social-auth/', include('social_django.urls', namespace='social')),
 ]

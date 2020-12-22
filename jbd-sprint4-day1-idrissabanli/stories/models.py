@@ -63,7 +63,7 @@ class Recipe(models.Model):
 
     # informations
     title = models.CharField('Basliq', max_length=100, db_index=True)
-    slug = models.SlugField('Slug', max_length=110)
+    slug = models.SlugField('Slug', editable=False, max_length=110, unique=True, )
     # category = models.PositiveSmallIntegerField('Kategoriya', choices=CATEGORY_CHOICES)
     short_description = models.CharField('Qisa Mezmun', max_length=255)
     description = models.TextField('Mezmun', null=True, blank=True)
@@ -82,6 +82,7 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.title
+
     
     def get_absolute_url(self):
         return reverse_lazy('stories:recipe_detail', kwargs={'slug': self.slug})

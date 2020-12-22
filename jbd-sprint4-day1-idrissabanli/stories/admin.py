@@ -30,7 +30,7 @@ class RecipeAdmin(admin.ModelAdmin):
         }),
         ('Informations', {
             'description': 'This group for informations',
-            'fields': ('title', 'slug', 'short_description', 'description', 'image')
+            'fields': ('title', 'short_description', 'description', 'image')
         }),
         ('Moderations', {
             'description': 'This group for moderations',

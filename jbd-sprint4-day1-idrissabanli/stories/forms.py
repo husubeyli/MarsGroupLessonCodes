@@ -13,7 +13,6 @@ class RecipeForm(forms.ModelForm):
             'title',
             'short_description',
             'description',
-            'slug',
             'image',
             'owner',
             'category',
@@ -32,10 +31,6 @@ class RecipeForm(forms.ModelForm):
             'description': forms.Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': 'Description'
-            }),
-            'slug': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Slug'
             }),
             'image': forms.FileInput(attrs={
                 'class': 'form-control',
