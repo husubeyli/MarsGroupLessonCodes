@@ -16,14 +16,17 @@ from accounts.tasks import send_confirmation_email
 from django.contrib.auth import get_user_model
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages import success, error
 from django.views.generic import (
     CreateView,
     View,
-    TemplateView
+    TemplateView,
+    DetailView
 )
 
 from accounts.tools.tokens import account_activation_token
+from stories.models import Recipe
 
 User = get_user_model()
 
@@ -114,6 +117,20 @@ class CustomPasswordResetConfirmView(PasswordResetConfirmView):
 
 class PasswordResetCompletedView(PasswordResetCompleteView):
     template_name = 'password_reset_completed.html'
+
+
+class UserProfileView(LoginRequiredMixin, TemplateView):
+    template_name = 'user-profile.html'
+    # model = User
+
+    def get_context_data(self, **kwargs):
+        user = self.request.user
+        context = super(UserProfileView, self).get_context_data(**kwargs)
+        recipes = Recipe.objects.filter(owner=user)
+        context['recipes'] = recipes
+        return context
+        # stories = Story.objects.filter()
+        
 
 
 

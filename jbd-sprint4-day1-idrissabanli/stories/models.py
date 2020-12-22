@@ -1,7 +1,10 @@
 from django.db import models
 from django.urls import reverse_lazy
+from django.contrib.auth import get_user_model
 
 from stories.tools.validators import validate_email
+
+User = get_user_model()
 
 
 class Author(models.Model):
@@ -58,7 +61,7 @@ class Recipe(models.Model):
     )
     # relations
     tags = models.ManyToManyField(Tag, related_name='recipes')
-    owner = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='recipes')
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='recipes')
     category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='recipes')
 
     # informations
@@ -83,7 +86,6 @@ class Recipe(models.Model):
     def __str__(self):
         return self.title
 
-    
     def get_absolute_url(self):
         return reverse_lazy('stories:recipe_detail', kwargs={'slug': self.slug})
 
