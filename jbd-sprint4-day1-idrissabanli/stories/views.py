@@ -160,7 +160,6 @@ class AddCookieView(TemplateView):
 #         response.set_cookie('add_cookie_id', cookie, expires=datetime.now() + timedelta(days=3))
 #         return response
 
-    
 
 class UpdateRecipeView(LoginRequiredMixin, UpdateView):
     model = Recipe

@@ -68,6 +68,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # customs
+    'stories.middlewares.check_ip_in_black_list.CheckIPInBlackList',
+    'stories.middlewares.check_ip_in_black_list.LoggingRequest'
 ]
 
 ROOT_URLCONF = 'food_stories.urls'
@@ -99,7 +102,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'stories_db_name',
         'USER': 'stories_db_user',
-        'PORT': 5432,
+        'PORT': 5433,
         'PASSWORD': 'f26b8ab553cfd4767216dbc7be7702fcad1b0115a6347e87e',
         'HOST': '127.0.0.1',
     }
@@ -216,9 +219,12 @@ LOGIN_REDIRECT_URL = reverse_lazy('stories:home_page')
 LOGOUT_REDIRECT_URL = reverse_lazy('accounts:login')
 LOGIN_URL = reverse_lazy('accounts:login')
 
+# email details
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'tech.academy.docker@gmail.com'
 EMAIL_HOST_PASSWORD = 'suqmnhaxezvemyhn'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

@@ -6,7 +6,7 @@ services:
         volumes:
             - ./pgdb/:/var/lib/postgresql/data
         ports:
-            - "5432:5432"
+            - "5433:5432"
         environment:
             POSTGRES_DB: 'stories_db_name'
             POSTGRES_USER: 'stories_db_user'
@@ -16,4 +16,4 @@ services:
         image: adminer
         restart: always
         ports:
-            - 8080:8080
+            - 8081:8080
