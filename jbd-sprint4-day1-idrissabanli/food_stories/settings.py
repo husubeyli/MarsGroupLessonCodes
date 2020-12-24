@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 APPS = [
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,6 +53,7 @@ CUSTOME_APPS = [
 
 THIRD_PARTY_APPS = [
     'social_django',
+    'rosetta'
 
 ]
 
@@ -62,6 +64,7 @@ AUTH_USER_MODEL = 'accounts.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -83,9 +86,11 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
             ],
         },
     },
@@ -162,7 +167,19 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
 LANGUAGE_CODE = 'az'
+gettext = lambda s: s
+LANGUAGES = (
+    ('az', gettext('Azerbaijan')),
+    ('en', gettext('English')),
+)
+MODELTRANSLATION_FALLBACK_LANGUAGES = ('az', 'en', )
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'az'
+ROSETTA_MESSAGES_SOURCE_LANGUAGE_CODE = 'az'
 
+ROSETTA_WSGI_AUTO_RELOAD = True
+
+from modeltranslation import settings as s
+print(s.DEFAULT_LANGUAGE)
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -170,6 +187,10 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
 
 
 # Django Jet Configurations
@@ -212,6 +233,11 @@ JET_THEMES = [
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 
 PASSWORD_RESET_TIMEOUT_DAYS = 0

@@ -13,15 +13,38 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+from django.views.i18n import JavaScriptCatalog
 
+js_info_dict = {
+    'domain': 'djangojs',
+    # 'packages': ('tickets',),
+}
 
 urlpatterns = [
+    # path('jsi18n/', 'django.views.i18n.javascript_catalog', js_info_dict),
+    path('i18n/', include('django.conf.urls.i18n')),
+    path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
     path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
-    path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')), 
+    path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     path('admin/', admin.site.urls),
+
+
+    path('social-auth/', include('social_django.urls', namespace='social')),
+
+
+
+]
+
+urlpatterns += i18n_patterns(
     path('', include('stories.urls', namespace='stories')),
     path('accounts/', include('accounts.urls', namespace='accounts')),
-    path('social-auth/', include('social_django.urls', namespace='social')),
-]
+)
+if 'rosetta' in settings.INSTALLED_APPS:
+    urlpatterns += [
+        path('rosetta/', include('rosetta.urls'))
+    ]

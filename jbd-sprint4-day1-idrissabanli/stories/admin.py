@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.db import models
 from django.db.models import fields
+from modeltranslation.admin import TranslationAdmin
 from stories.models import (
     Recipe,
     Author,
@@ -15,7 +16,7 @@ class CommentTabularInlineAdmin(admin.TabularInline):
 
 
 @admin.register(Recipe)
-class RecipeAdmin(admin.ModelAdmin):
+class RecipeAdmin(TranslationAdmin):
     inlines = (CommentTabularInlineAdmin, )
     list_display = ('title',  'owner', 'category', 'is_published', 'created_at',)
     list_filter = ('is_published', 'created_at')

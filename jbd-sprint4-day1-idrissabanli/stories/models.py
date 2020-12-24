@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
+from django.utils.translation import gettext_lazy as _
 
 from stories.tools.validators import validate_email
 
@@ -9,8 +10,8 @@ User = get_user_model()
 
 class Author(models.Model):
     CATEGORY_CHOICES = (
-        (1, 'Male'),
-        (2, 'Female'),
+        (1, _('Male')),
+        (2, _('Female')),
     )
     first_name = models.CharField('Name: ', max_length=30)
     last_name = models.CharField('Surname: ', max_length=40)
@@ -26,14 +27,15 @@ class Author(models.Model):
 
     class Meta:
         db_table = 'users'
-        verbose_name = ('User')
-        verbose_name_plural = ('Users')
+        verbose_name = _('User')
+        verbose_name_plural = _('Users')
+
     def __str__(self):
         return self.first_name
 
 
 class Tag(models.Model):
-    title = models.CharField('Title', max_length=100, db_index=True)
+    title = models.CharField(_('Title'), max_length=100, db_index=True)
 
     # moderations
     is_published = models.BooleanField('is published', default=True)
@@ -41,8 +43,8 @@ class Tag(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = 'Tag'
-        verbose_name_plural = 'Tags'
+        verbose_name = _('Tag')
+        verbose_name_plural = _('Tags')
         ordering = ('-created_at', 'title')
 
     def __str__(self):
@@ -54,15 +56,15 @@ class Recipe(models.Model):
     Bu Model reseptler ucun meselen Alma piroqu, ...
     """
     CATEGORY_CHOICES = (
-        (1, 'Dessert'),
-        (2, 'Drink'),
-        (3, 'Isti yemek'),
-        (4, 'Sulu yemek'),
+        (1, _('Dessert')),
+        (2, _('Drink')),
+        (3, _('Isti yemek')),
+        (4, _('Sulu yemek')),
     )
     # relations
     tags = models.ManyToManyField(Tag, related_name='recipes')
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='recipes')
-    category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='recipes')
+    category = models.ForeignKey('Category', verbose_name=_('Category'), on_delete=models.CASCADE, related_name='recipes')
 
     # informations
     title = models.CharField('Basliq', max_length=100, db_index=True)
