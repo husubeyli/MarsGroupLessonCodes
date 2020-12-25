@@ -39,10 +39,15 @@ APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'django.contrib.sites',
+    # 'django.contrib.flatpages',
 ]
 APPS.insert(0, 'jet.dashboard',)
 
 APPS.insert(0, 'jet')
+
+SITE_ID = 1
 
 
 CUSTOME_APPS = [
@@ -52,9 +57,12 @@ CUSTOME_APPS = [
 
 
 THIRD_PARTY_APPS = [
+    'rest_framework',
     'social_django',
-    'rosetta'
-
+    'rosetta',
+    'mptt',
+    'modeltrans',
+    'flatpages_i18n',
 ]
 
 
@@ -65,6 +73,7 @@ AUTH_USER_MODEL = 'accounts.User'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+# 'food_stories.middleware.force_default_middleware.force_default_language_middleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

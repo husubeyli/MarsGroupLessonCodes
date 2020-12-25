@@ -1,5 +1,5 @@
 from math import nan
-from django.urls import path
+from django.urls import path, include
 from stories.views import (
     test,
     home,
@@ -30,5 +30,6 @@ urlpatterns = [
     path('update-recipe/<int:pk>/', UpdateRecipeView.as_view(), name='recipe_update'),
     path('create-recipe/', CreateRecipeView.as_view(), name='create_recipe'),
     path('delete-recipe/<int:pk>/', RecipeDeleteView.as_view(), name='delete_recipe'),
-    path('add-cookie/', AddCookieView.as_view(), name='add_cookie')
+    path('add-cookie/', AddCookieView.as_view(), name='add_cookie'),
+    path('api/v1.0/', include('stories.api.urls')),
 ]

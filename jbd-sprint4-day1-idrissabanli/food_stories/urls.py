@@ -29,20 +29,17 @@ urlpatterns = [
     # path('jsi18n/', 'django.views.i18n.javascript_catalog', js_info_dict),
     path('i18n/', include('django.conf.urls.i18n')),
     path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
-    path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
-    path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
-    path('admin/', admin.site.urls),
-
-
     path('social-auth/', include('social_django.urls', namespace='social')),
-
-
 
 ]
 
 urlpatterns += i18n_patterns(
+    path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
+    path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
+    path('admin/', admin.site.urls),
     path('', include('stories.urls', namespace='stories')),
     path('accounts/', include('accounts.urls', namespace='accounts')),
+    path('pages/', include('flatpages_i18n.urls')),
 )
 if 'rosetta' in settings.INSTALLED_APPS:
     urlpatterns += [

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load static i18n %}
+{% load static i18n flatpages_i18n %}
 <html lang="en">
 
 <head>
@@ -153,9 +153,12 @@
                     <div class="ftco-footer-widget mb-4 ml-md-5">
                         <h2 class="ftco-heading-2">Information</h2>
                         <ul class="list-unstyled">
-                            <li><a href="#" class="py-2 d-block">Terms of Uses</a></li>
+{#                            {% get_flatpages_i18n  as flatpages_i18n %}#}
+{#                            {{ flatpages_i18n.content_i18n }}#}
+{#                            {% for flatpage in flatpages_i18n %}#}
+{#                                <li><a href="{{ flatpage.get_absolute_url }}">{{ flatpage }}</a></li>#}
+{#                            {% endfor %}#}
                             <li><a href="#" class="py-2 d-block">About Stories</a></li>
-                            <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
                             <li><a href="#" class="py-2 d-block">Accessibility Help</a></li>
                             <li><a href="#" class="py-2 d-block">Advertise with us</a></li>
                         </ul>
