@@ -1,11 +1,12 @@
 from rest_framework.viewsets import ModelViewSet
-
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from stories.api.serializers import RecipeSerializer, RecipeCreateSerializer
 from stories.models import Recipe
 
 
 class RecipeViewSet(ModelViewSet):
     serializer_class = RecipeCreateSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, )
     queryset = Recipe.objects.filter(is_published=True)
     serializers = {
         'list': RecipeSerializer,

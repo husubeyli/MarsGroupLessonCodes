@@ -63,6 +63,7 @@ THIRD_PARTY_APPS = [
     'mptt',
     'modeltrans',
     'flatpages_i18n',
+    'rest_framework.authtoken'
 ]
 
 
@@ -72,8 +73,8 @@ AUTH_USER_MODEL = 'accounts.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'food_stories.middleware.force_default_middleware.force_default_language_middleware',
     'django.middleware.locale.LocaleMiddleware',
-# 'food_stories.middleware.force_default_middleware.force_default_language_middleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -171,6 +172,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -178,17 +187,15 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'az'
 gettext = lambda s: s
 LANGUAGES = (
-    ('az', gettext('Azerbaijan')),
     ('en', gettext('English')),
+    ('az', gettext('Azerbaijan')),
 )
-MODELTRANSLATION_FALLBACK_LANGUAGES = ('az', 'en', )
+MODELTRANSLATION_FALLBACK_LANGUAGES = ('en', 'az', )
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'az'
 ROSETTA_MESSAGES_SOURCE_LANGUAGE_CODE = 'az'
 
 ROSETTA_WSGI_AUTO_RELOAD = True
 
-from modeltranslation import settings as s
-print(s.DEFAULT_LANGUAGE)
 TIME_ZONE = 'UTC'
 
 USE_I18N = True

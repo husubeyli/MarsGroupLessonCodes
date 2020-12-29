@@ -19,11 +19,8 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.i18n import JavaScriptCatalog
+from rest_framework.authtoken import views
 
-js_info_dict = {
-    'domain': 'djangojs',
-    # 'packages': ('tickets',),
-}
 
 urlpatterns = [
     # path('jsi18n/', 'django.views.i18n.javascript_catalog', js_info_dict),
@@ -40,7 +37,9 @@ urlpatterns += i18n_patterns(
     path('', include('stories.urls', namespace='stories')),
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('pages/', include('flatpages_i18n.urls')),
+    path('api-auth/v1.0/', views.obtain_auth_token)
 )
+
 if 'rosetta' in settings.INSTALLED_APPS:
     urlpatterns += [
         path('rosetta/', include('rosetta.urls'))

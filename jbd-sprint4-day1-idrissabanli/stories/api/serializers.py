@@ -1,10 +1,13 @@
 from rest_framework import serializers
+from django.contrib.auth import get_user_model
 
 from stories.models import (
     Recipe,
     Category,
     Tag
 )
+
+User = get_user_model()
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -48,6 +51,7 @@ class RecipeSerializer(serializers.ModelSerializer):
 
 
 class RecipeCreateSerializer(serializers.ModelSerializer):
+    owner = serializers.PrimaryKeyRelatedField(queryset=User.objects.filter(is_active=True), required=False)
 
     class Meta:
         model = Recipe
@@ -63,3 +67,9 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
             'image',
             'created_at',
         )
+
+    def validate(self, attrs):
+        request = self.context.get('request')
+        owner = request.user
+        attrs['owner'] = owner
+        return attrs
