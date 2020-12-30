@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h1>Please Enter Recipe Details</h1>
+        <form method="POST" id="recipeForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="text" class="form-control" required placeholder="Write title" name="title">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" required placeholder="Write short description" name="short_description">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" required placeholder="Write description" name="description">
+            </div>
+
+            <div class="form-group">
+                <select id="category" name="category" required>
+                </select>
+            </div>
+            <div class="form-group">
+                <select id="tags" name="tags" multiple="true" required>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="file" class="form-control" required name="image">
+            </div>
+            <input type="submit" class="btn btn-primary mt-4 mb-4" value="Login">
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="createRecipe.js"></script>
+</body>
+</html>
