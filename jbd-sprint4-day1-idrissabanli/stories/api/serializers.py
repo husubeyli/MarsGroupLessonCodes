@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from stories.models import (
     Recipe,
     Category,
-    Tag
+    Tag, RecipeComment
 )
 
 User = get_user_model()
@@ -29,10 +29,20 @@ class TagSerializer(serializers.ModelSerializer):
             'title'
         )
 
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RecipeComment
+        fields = (
+            'user',
+            'text',
+        )
+
+
 
 class RecipeSerializer(serializers.ModelSerializer):
     category = CategorySerializer()
     tags = TagSerializer(many=True)
+    comments = serializers.SerializerMethodField()
 
     class Meta:
         model = Recipe
@@ -42,12 +52,17 @@ class RecipeSerializer(serializers.ModelSerializer):
             'description',
             'short_description',
             'tags',
+            'comments',
             'owner',
             'category',
             'slug',
             'image',
             'created_at',
         )
+
+    def get_comments(self, recipe):
+        return CommentSerializer(recipe.comments.all(), many=True).data
+
 
 
 class RecipeCreateSerializer(serializers.ModelSerializer):

@@ -38,7 +38,7 @@ urlpatterns += i18n_patterns(
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('pages/', include('flatpages_i18n.urls')),
     path('api-auth/v1.0/', views.obtain_auth_token)
-)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if 'rosetta' in settings.INSTALLED_APPS:
     urlpatterns += [

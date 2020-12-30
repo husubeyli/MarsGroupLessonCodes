@@ -1,7 +1,17 @@
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
-from stories.api.serializers import RecipeSerializer, RecipeCreateSerializer
-from stories.models import Recipe
+from stories.api.serializers import RecipeSerializer, RecipeCreateSerializer, TagSerializer, CategorySerializer
+from stories.models import Recipe, Tag, Category
+
+
+class TagViewSet(ReadOnlyModelViewSet):
+    serializer_class = TagSerializer
+    queryset = Tag.objects.filter(is_published=True)
+
+
+class CategoryViewSet(ReadOnlyModelViewSet):
+    serializer_class = CategorySerializer
+    queryset = Category.objects.filter(is_published=True)
 
 
 class RecipeViewSet(ModelViewSet):

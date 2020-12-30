@@ -63,7 +63,8 @@ THIRD_PARTY_APPS = [
     'mptt',
     'modeltrans',
     'flatpages_i18n',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'corsheaders',
 ]
 
 
@@ -76,6 +77,7 @@ MIDDLEWARE = [
     'food_stories.middleware.force_default_middleware.force_default_language_middleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -87,6 +89,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'food_stories.urls'
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 TEMPLATES = [
     {
@@ -268,5 +272,7 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'tech.academy.docker@gmail.com'
 EMAIL_HOST_PASSWORD = 'suqmnhaxezvemyhn'
+
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

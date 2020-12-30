@@ -72,7 +72,7 @@ class Recipe(models.Model):
     # category = models.PositiveSmallIntegerField('Kategoriya', choices=CATEGORY_CHOICES)
     short_description = models.CharField('Qisa Mezmun', max_length=255)
     description = models.TextField('Mezmun', null=True, blank=True)
-    image = models.ImageField('Sekil', upload_to='media/recipe_images')
+    image = models.ImageField('Sekil', upload_to='recipe_images')
 
     # moderations
     is_published = models.BooleanField('is published', default=True)
