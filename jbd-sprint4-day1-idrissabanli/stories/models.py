@@ -148,3 +148,19 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Subscriber(models.Model):
+    email = models.CharField(_('Email'), max_length=40)
+
+    # moderation's
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Subscriber'
+        verbose_name_plural = 'Subscribers'
+        ordering = ('-created_at',)
+
+    def __str__(self):
+        return self.email

@@ -25,6 +25,7 @@ from stories.forms import (
     ContactForm,
     RecipeForm
 )
+from stories.tasks import dump_database
 
 User = get_user_model()
 
@@ -205,3 +206,9 @@ class CreateRecipeView(LoginRequiredMixin, CreateView):
 #         'form': form
 #     }
 #     return render(request, 'contact.html', context)
+
+
+
+def dump_database_view(request):
+    dump_database.delay()
+    return HttpResponse('Database dump olundu')

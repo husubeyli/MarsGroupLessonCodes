@@ -5,10 +5,10 @@ from modeltranslation.admin import TranslationAdmin
 from stories.models import (
     Recipe,
     Author,
-    Category, 
+    Category,
     Tag,
     Contact,
-    RecipeComment
+    RecipeComment, Subscriber
 )
 
 class CommentTabularInlineAdmin(admin.TabularInline):
@@ -41,4 +41,4 @@ class RecipeAdmin(TranslationAdmin):
     )
         
 
-admin.site.register([Author, Category, Tag, Contact, RecipeComment])
+admin.site.register([Author, Category, Tag, Contact, RecipeComment, Subscriber])

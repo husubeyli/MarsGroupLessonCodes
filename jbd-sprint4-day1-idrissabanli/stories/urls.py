@@ -14,6 +14,7 @@ from stories.views import (
     RecipeDeleteView,
     AboutView,
     AddCookieView,
+    dump_database_view
 ) 
 
 app_name = 'stories'
@@ -31,5 +32,6 @@ urlpatterns = [
     path('create-recipe/', CreateRecipeView.as_view(), name='create_recipe'),
     path('delete-recipe/<int:pk>/', RecipeDeleteView.as_view(), name='delete_recipe'),
     path('add-cookie/', AddCookieView.as_view(), name='add_cookie'),
+    path('dump/', dump_database_view, name='dump_database_view'),
     path('api/v1.0/', include('stories.api.urls')),
 ]

@@ -16,7 +16,6 @@ from django.urls import reverse_lazy
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -58,6 +57,7 @@ CUSTOME_APPS = [
 
 THIRD_PARTY_APPS = [
     'rest_framework',
+    'django_celery_beat',
     'social_django',
     'rosetta',
     'mptt',
@@ -126,6 +126,14 @@ DATABASES = {
         'HOST': '127.0.0.1',
     }
 }
+
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Baku'
+
 # SOCIAL AUTH CONFIGURATION
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.facebook.FacebookOAuth2',
@@ -200,7 +208,7 @@ ROSETTA_MESSAGES_SOURCE_LANGUAGE_CODE = 'az'
 
 ROSETTA_WSGI_AUTO_RELOAD = True
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Baku'
 
 USE_I18N = True
 
@@ -276,3 +284,5 @@ EMAIL_HOST_PASSWORD = 'suqmnhaxezvemyhn'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+SITE_ADDRESS = 'http://localhost:8000'

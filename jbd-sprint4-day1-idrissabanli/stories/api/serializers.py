@@ -29,6 +29,7 @@ class TagSerializer(serializers.ModelSerializer):
             'title'
         )
 
+
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = RecipeComment
@@ -36,7 +37,6 @@ class CommentSerializer(serializers.ModelSerializer):
             'user',
             'text',
         )
-
 
 
 class RecipeSerializer(serializers.ModelSerializer):
@@ -62,7 +62,6 @@ class RecipeSerializer(serializers.ModelSerializer):
 
     def get_comments(self, recipe):
         return CommentSerializer(recipe.comments.all(), many=True).data
-
 
 
 class RecipeCreateSerializer(serializers.ModelSerializer):
