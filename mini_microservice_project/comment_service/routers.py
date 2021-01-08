@@ -45,4 +45,15 @@ def comments(id):
     return jsonify(found_post[0])
 
 
+@app.route('/events/', methods=['POST'])
+def events():
+    event_data = dict(request.json)
+    event_type = event_data.get('event_type')
+    if event_type and event_type == 'PostCreated':
+        post_data = event_data.get('data')
+        post_comment_list.append(post_data)
+    return jsonify(post_comment_list)
+
+
+
 
