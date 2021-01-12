@@ -40,6 +40,11 @@ class Category(SaveMixin, db.Model):
     image = db.Column(db.String(255), nullable=False)
     recipes = db.relationship('Recipe', backref=db.backref('recipe', lazy=True))
 
+    is_published = db.Column(db.Boolean(), default=True)
+    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now(), nullable=False)
+    updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now(),
+                           server_onupdate=func.now(), nullable=False)
+
     def __repr__(self):
         return self.title
 
@@ -65,7 +70,7 @@ class Recipe(SaveMixin, db.Model):
     title = db.Column(db.String(80), nullable=False)
     description = db.Column(db.Text, nullable=False)
     short_description = db.Column(db.Text, nullable=False)
-    image = db.Column(db.String(255), nullable=False)
+    image = db.Column(db.String(255), nullable=True)
 
     is_published = db.Column(db.Boolean(), default=True)
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now(), nullable=False)
@@ -75,7 +80,8 @@ class Recipe(SaveMixin, db.Model):
     def __repr__(self):
         return self.title
 
-    def __init__(self, title, image, description, short_description, category_id, owner_id, is_published=True, **kwargs):
+    def __init__(self, title, description, short_description, category_id, owner_id=1, image='',
+                 is_published=True, **kwargs):
         self.slug = slugify(kwargs.get('title', ''))
         self.title = title
         self.image = image
