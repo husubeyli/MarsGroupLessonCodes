@@ -3,7 +3,7 @@ from flask_migrate import Migrate
 from post_service.app import app
 from flask_marshmallow import Marshmallow
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://db_user:bTmNECmEZOrdUcX4DQkAGevLtRakY@127.0.0.1:5432/db_name'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://db_user:bTmNECmEZOrdUcX4DQkAGevLtRakY@127.0.0.1:5432/db_name'
 app.config['SECRET_KEY'] = 'this is private'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 

@@ -4,6 +4,9 @@ from marshmallow import validates, ValidationError
 
 from post_service.models import Recipe, Category
 
+# class TagSchema(ma.Schema):
+#     id = ma.INT(required=True)
+
 
 class RecipeSchema(ma.SQLAlchemyAutoSchema):
     image = AbsoluteURLFor(
