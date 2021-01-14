@@ -1,3 +1,4 @@
+import django_filters
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from stories.api.serializers import RecipeSerializer, RecipeCreateSerializer, TagSerializer, CategorySerializer
@@ -10,6 +11,9 @@ class TagViewSet(ReadOnlyModelViewSet):
 
 
 class CategoryViewSet(ReadOnlyModelViewSet):
+    '''
+        Bu categorylerin get olunmasi ucundu...
+    '''
     serializer_class = CategorySerializer
     queryset = Category.objects.filter(is_published=True)
 
@@ -18,6 +22,7 @@ class RecipeViewSet(ModelViewSet):
     serializer_class = RecipeCreateSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, )
     queryset = Recipe.objects.filter(is_published=True)
+
     serializers = {
         'list': RecipeSerializer,
         'retrieve': RecipeSerializer,
@@ -27,6 +32,8 @@ class RecipeViewSet(ModelViewSet):
         'create': RecipeCreateSerializer,
         'default': RecipeCreateSerializer,
     }
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filter_fields = ['title',]
 
     def get_queryset(self):
         queryset = super().get_queryset()

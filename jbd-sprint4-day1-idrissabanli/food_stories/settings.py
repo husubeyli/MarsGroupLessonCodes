@@ -56,6 +56,7 @@ CUSTOME_APPS = [
 
 
 THIRD_PARTY_APPS = [
+    'drf_yasg',
     'rest_framework',
     'django_celery_beat',
     'social_django',
