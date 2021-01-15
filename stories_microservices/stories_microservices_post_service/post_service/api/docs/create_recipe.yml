@@ -1,0 +1,84 @@
+Create recipe
+This endpoint for create recipe information by owner
+---
+tags:
+  - recipes
+definitions:
+  Recipe:
+    type: object
+    properties:
+      category_id:
+        type: integer
+        required: true
+        description: Get Category Id
+        default: 1
+      owner_id:
+        type: integer
+        description: Get Owner Id
+        default: 1
+      tags:
+        type: array
+        description: Get Tags Id
+        items:
+          type: integer
+      slug:
+        type: string
+        required: true
+        description: Get Slug
+      title:
+        type: string
+        required: true
+        description: Get title
+        minimum: 1
+        maximum: 80
+      description:
+        type: string
+        required: true
+        description: Get description
+      short_description:
+        type: string
+        required: true
+        description: Get short_description
+      image:
+        type: string
+        description: Get Slug
+        format: byte
+      is_published:
+        type: boolean
+        readOnly: true
+        default: true
+        description: Get is_published
+      created_at:
+        type: string
+        readOnly: true
+        format: datetime
+        description: Get created_at
+      updated_at:
+        type: string
+        readOnly: true
+        format: datetime
+        description: Get created_at
+consumes:
+ - "application/json"
+ - "application/xml"
+ - "multipart/form-data"
+produces:
+ - "application/json"
+ - "application/xml"
+parameters:
+  - name: data
+    in: body
+    schema:
+      $ref: '#/definitions/Recipe'
+
+responses:
+
+  201:
+    description: A list of recipe
+    schema:
+      $ref: '#/definitions/Recipe'
+    examples:
+      $ref: '#/definitions/Recipe'
+
+  400:
+    description: Bad Request
