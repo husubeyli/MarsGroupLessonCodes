@@ -1,0 +1,14 @@
+version: '3'
+services:
+
+  auth_db:
+    container_name:  auth-db
+    image:           postgres
+    ports:
+      - 5433:5432 # Bind host port 5432 to PostgreSQL port 5432
+    restart: always
+    volumes:
+      - ../user-db-data:/var/lib/postgresql/data
+    env_file: ../.env
+    environment:
+      - LC_ALL=C.UTF-8
