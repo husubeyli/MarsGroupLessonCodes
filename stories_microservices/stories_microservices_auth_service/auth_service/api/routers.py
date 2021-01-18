@@ -52,8 +52,8 @@ def login():
             # if not user.is_active:
             #     return jsonify({'message': 'Please confirm your account'}), HTTPStatus.OK
             user = UserSchema().dump(user)
-            access_token = create_access_token(identity=user['email'])
-            refresh_token = create_refresh_token(identity=user['email'])
+            access_token = create_access_token(identity=user['id'])
+            refresh_token = create_refresh_token(identity=user['id'])
             user.update({
                 'access_token': access_token,
                 'refresh_token': refresh_token
@@ -68,9 +68,9 @@ def login():
 @app.route('/user-profile/')
 @jwt_required
 def user_profile():
-    user_email = get_jwt_identity()
+    user_id = get_jwt_identity()
     # user = User.query.filter_by(email=user_email, is_active=True).first()
-    user = User.query.filter_by(email=user_email).first()
+    user = User.query.filter_by(id=user_id).first()
     if not user:
         return jsonify({'message': 'Not found'}), HTTPStatus.UNAUTHORIZED
     return UserSchema().jsonify(user), HTTPStatus.OK
@@ -79,9 +79,9 @@ def user_profile():
 @app.route('/refresh-token/', methods=['POST'])
 @jwt_refresh_token_required
 def refresh():
-    user_email = get_jwt_identity()
-    print('user_email', user_email)
+    user_id = get_jwt_identity()
+    print('user_email', user_id)
     ret = {
-        'access_token': create_access_token(identity=user_email)
+        'access_token': create_access_token(identity=user_id)
     }
     return jsonify(ret), HTTPStatus.OK
