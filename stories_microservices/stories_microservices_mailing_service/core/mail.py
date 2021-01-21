@@ -7,7 +7,7 @@ from .config import EmailConfig
 
 class SendMail(EmailConfig):
 
-    def __init__(self, subject, body, to=None, subtype='html'):
+    def __init__(self, subject, body, to=None, subtype='html', *args, **kwargs):
         self.subject = subject
         self.body = body
         self.recipients = to or []
@@ -33,25 +33,25 @@ class SendMail(EmailConfig):
     def send_mail(self, recipient):
         message = self.get_mail_message(recipient)
         context = ssl.create_default_context()
-        with smtplib.SMTP_SSL(self.EMAIL_HOST, self.EMAIL_PORT, context=context) as server:
+        with smtplib.SMTP_SSL(self.EMAIL_HOST, 465, context=context) as server:
             server.login(self.EMAIL_HOST_USER, self.EMAIL_HOST_PASSWORD)
             server.sendmail(
                 self.EMAIL_HOST_USER, recipient, message.as_string()
             )
 
 
-SendMail(subject='Salam meleykum',
-         body="""
-                 <html>
-                  <body>
-                    <p>Hi,<br>
-                       How are you?<br>
-                       <a href="http://www.realpython.com">Real Python</a>
-                       has many great tutorials.
-                    </p>
-                  </body>
-                </html>
-             """,
-         to=['idris.sabanli@gmail.com'],
-         subtype='html',
-         )
+# SendMail(subject='Salam meleykum',
+#          body="""
+#                  <html>
+#                   <body>
+#                     <p>Hi,<br>
+#                        How are you?<br>
+#                        <a href="http://www.realpython.com">Real Python</a>
+#                        has many great tutorials.
+#                     </p>
+#                   </body>
+#                 </html>
+#              """,
+#          to=['idris.sabanli@gmail.com'],
+#          subtype='html',
+#          )

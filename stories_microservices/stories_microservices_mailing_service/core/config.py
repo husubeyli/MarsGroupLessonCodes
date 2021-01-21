@@ -1,5 +1,8 @@
 import os
 
+import redis
+
+
 class EmailConfig:
     EMAIL_HOST = "smtp.gmail.com"
     EMAIL_USE_TLS = True
@@ -13,3 +16,7 @@ class RedisConfig:
     PORT = os.environ.get('PORT', 6379)
     CHANNEL_NAME = 'events'
     PASSWORD = os.environ.get('PASSWORD', '12345')
+
+    @classmethod
+    def client(cls):
+        return redis.Redis(host=cls.HOST, port=cls.PORT, password=cls.PASSWORD, db=0)

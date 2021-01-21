@@ -18,6 +18,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 app.config['JWT_SECRET_KEY'] = 'super-secret'
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=15)
+app.config['SECURITY_PASSWORD_SALT'] = 'my_precious_two'
+
 jwt = JWTManager(app)
 
 db = SQLAlchemy(app)

@@ -1,8 +1,13 @@
 from auth_service.config.extentions import db, login_manager
+from flask import render_template, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.orm import validates
 from flask_login import UserMixin
 from sqlalchemy.sql import func
+
+from auth_service.publisher import Publish
+
+from auth_service.utils.tokens import generate_confirmation_token
 
 
 @login_manager.user_loader
@@ -38,3 +43,20 @@ class User(UserMixin, db.Model):
     def save(self):
         db.session.add(self)
         db.session.commit()
+
+    def send_confirmation_mail(self):
+        token = generate_confirmation_token(self.email)
+        confirm_url = url_for('confirm_email', token=token, _external=True)
+        html = render_template('email/confirmation_email.html', confirm_url=confirm_url, user=self)
+        data = {
+            'subject': 'Confirmation mail',
+            'body': html,
+            'to': [self.email],
+            'subtype': 'html',
+        }
+        event_type = 'send_mail'
+        Publish(data, event_type)
+
+    @property
+    def get_full_name(self):
+        return f'{self.first_name} {self.last_name}'

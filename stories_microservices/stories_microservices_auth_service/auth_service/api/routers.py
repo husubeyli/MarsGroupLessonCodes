@@ -19,6 +19,8 @@ from auth_service.models import User
 
 from auth_service.utils.common import save_file
 
+from auth_service.utils.tokens import confirm_token
+
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
@@ -36,9 +38,30 @@ def register():
             user.image = save_file(image)
         user.is_active = False
         user.save()
+        user.send_confirmation_mail()
         return UserSchema().jsonify(user), HTTPStatus.CREATED
     except ValidationError as err:
         return jsonify(err.messages), HTTPStatus.BAD_REQUEST
+
+
+@app.route('/confirm/<token>')
+def confirm_email(token):
+    email = confirm_token(token)
+    if not email:
+        return jsonify({'message': 'The confirmation link is invalid or has expired.'}), HTTPStatus.OK
+    user = User.query.filter_by(email=email).first()
+    if not user:
+        return jsonify({'message': 'Account not found'}), HTTPStatus.OK
+    print('is active', user.is_active)
+    if user.is_active:
+        return jsonify({'message': 'Account already confirmed. Please login.'}), HTTPStatus.OK
+    else:
+        user.is_active = True
+        user.save()
+        return jsonify({'message': 'You have confirmed your account. Thanks!'}), HTTPStatus.OK
+
+
+
 
 
 @app.route('/login/', methods=['POST'])
